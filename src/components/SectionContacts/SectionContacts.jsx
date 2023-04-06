@@ -6,8 +6,6 @@ import styles from './section-contacts.module.css';
 import { selectFilteredContacts } from 'redux/selectors/selectors';
 
 const SectionContacts = () => {
-  const contacts = useSelector(selectAllContacts);
-  // console.log(contacts);
   const filteredContacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();
 
