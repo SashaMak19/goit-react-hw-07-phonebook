@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/slices/contactsSlice';
+import { addContact } from 'redux/operations/operations';
+import { selectAllContacts } from 'redux/selectors/selectors';
 import styles from './section-form.module.css';
 
 const SectionForm = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(selectAllContacts);
 
   const handleChange = e => {
     const nameInput = e.currentTarget.name;
@@ -17,8 +18,8 @@ const SectionForm = () => {
       case 'name':
         setName(valueInput);
         break;
-      case 'number':
-        setNumber(valueInput);
+      case 'phone':
+        setPhone(valueInput);
         break;
       default:
         return;
@@ -27,24 +28,20 @@ const SectionForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
     const isExistingContact = contacts.find(
       ({ name }) =>
         name.toLowerCase() === e.currentTarget.name.value.toLowerCase()
     );
-
     if (isExistingContact) {
       return alert(`${e.currentTarget.name.value} is already in contacs.`);
     }
-
-    dispatch(addContact({ name, number }));
-
+    dispatch(addContact({ name, phone }));
     reset();
   };
 
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -66,11 +63,11 @@ const SectionForm = () => {
           Number
           <input
             type="tel"
-            name="number"
+            name="phone"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            value={number}
+            value={phone}
             onChange={handleChange}
           />
         </label>

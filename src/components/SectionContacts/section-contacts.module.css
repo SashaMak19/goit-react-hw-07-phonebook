@@ -6,13 +6,29 @@
 
 .item {
   display: flex;
-  justify-content: space-between;
+  font-size: 24px;
+  gap: 15px;
 }
 
 .item:not(:last-child) {
   margin-bottom: 5px;
 }
 
+.button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
 .button:hover {
-  background-color: rgb(179, 179, 219);
+  background-color: rgb(1, 107, 61);
 }

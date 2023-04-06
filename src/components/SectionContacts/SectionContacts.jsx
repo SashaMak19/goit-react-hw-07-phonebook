@@ -1,11 +1,18 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/slices/contactsSlice';
+import { fetchContacts, deleteContact } from 'redux/operations/operations';
+import { selectAllContacts, selectFilter } from 'redux/selectors/selectors';
 import styles from './section-contacts.module.css';
 
 const SectionContacts = () => {
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const contacts = useSelector(selectAllContacts);
+  console.log(contacts);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const getFilteredContacts = () => {
     const filterToLowerCase = filter.toLowerCase();
@@ -19,9 +26,10 @@ const SectionContacts = () => {
 
   return (
     <ul className={styles.list}>
-      {filteredContacts.map(({ name, number, id }) => (
+      {filteredContacts.map(({ name, phone, id }) => (
         <li key={id} className={styles.item}>
-          {name}: {number}
+          <span className={styles.span}>{name}:</span>
+          <span>{phone}</span>
           <button
             type="button"
             onClick={() => dispatch(deleteContact(id))}

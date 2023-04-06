@@ -6,9 +6,9 @@ import styles from './app.module.css';
 const App = () => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Phone book</h2>
+      <h2>Phone book</h2>
       <SectionForm />
-      <h2 className={styles.title}>Contacts</h2>
+      <h2>Contacts</h2>
       <div className={styles.contactListContainer}>
         <Filter />
         <SectionContacts />
