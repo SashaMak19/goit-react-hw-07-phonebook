@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchContacts, deleteContact } from 'redux/operations/operations';
-import { selectAllContacts } from 'redux/selectors/selectors';
+import { useContacts } from 'hooks/useContacts';
 import styles from './section-contacts.module.css';
-import { selectFilteredContacts } from 'redux/selectors/selectors';
 
 const SectionContacts = () => {
-  const filteredContacts = useSelector(selectFilteredContacts);
+  const filteredContacts = useContacts();
   const dispatch = useDispatch();
 
   useEffect(() => {

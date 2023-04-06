@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useFilter } from 'hooks/useFilter';
 import { filterContacts } from 'redux/slices/filterSlice';
-import { selectFilter } from 'redux/selectors/selectors';
 import styles from './filter.module.css';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const inputValue = useSelector(selectFilter);
+  const inputValue = useFilter();
 
   return (
     <label className={styles.label}>
